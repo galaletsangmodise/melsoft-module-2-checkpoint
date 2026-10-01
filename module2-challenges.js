@@ -287,4 +287,33 @@ buggyCode();
     semicolons and consistent style. The unused userName is now used.
 
 */
+
+// CHALLENGE 6 
+
+{
+  console.log(0.1 + 0.2);          // 0.30000000000000004
+  console.log(0.3 - 0.1);          // 0.19999999999999998
+  console.log(0.1 * 3);            // 0.30000000000000004
+  console.log(0.1 + 0.2 === 0.3);  // false
+ 
+  /*
+    WHY: JavaScript stores numbers as 64-bit binary floating point
+    (IEEE 754). Computers work in base 2, and just like 1/3 cannot be
+    written exactly in base 10 (0.3333...), the decimal 0.1 cannot be
+    written exactly in base 2. It becomes an infinitely repeating binary
+    fraction that gets rounded to fit in 64 bits. Adding two slightly
+    rounded values gives a result that is a tiny bit off from 0.3, so ===
+    says false. 
+  */
+ 
+  // Safe comparison:
+  const areClose = Math.abs((0.1 + 0.2) - 0.3) < Number.EPSILON;
+  console.log(areClose);           // true
+ 
+  /*
+    Number.EPSILON is the smallest difference (about 2.22e-16) between 1
+    and the next representable number. It acts as a tolerance for
+    floating-point rounding error..
+  */
+}
  
