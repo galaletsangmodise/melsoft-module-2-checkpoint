@@ -390,7 +390,7 @@ originalCode();
   console.log(badQuantity);       // NaN
  
   /*
-    What happened: Number("abc") cannot parse the text, so it returns NaN.
+    Number("abc") cannot parse the text, so it returns NaN.
     Any calculation with NaN also becomes NaN, so the receipt would show
     "R NaN" without any error being thrown. A real application should
     validate the input BEFORE calculating: check Number.isNaN(quantity),
@@ -399,5 +399,42 @@ originalCode();
   if (Number.isNaN(badQuantity) || !Number.isInteger(badQuantity) || badQuantity <= 0) {
     console.log("Invalid quantity: please enter a whole number greater than 0.");
   }
+}
+ 
+// CHALLENGE 9 
+
+
+{
+  /*
+    PREDICTIONS 
+    1. typeof result   -> "number"
+    2. result          -> 2
+    3. typeof result2  -> "number"
+    4. result2         -> NaN
+    5. result2 + 1     -> NaN
+    6. result3         -> "1055"
+    7. result4         -> "1010"
+  */
+ 
+  let mystery = "10";                    // string
+  let count = 5;                         // number
+  let result = mystery / count;          // / is numeric only, so "10" becomes 10, then 10 / 5 = 2
+  console.log(typeof result);            // "number"
+  console.log(result);                   // 2
+ 
+  let mystery2 = "10a";                  // string that is not fully numeric
+  let count2 = 5;
+  let result2 = mystery2 / count2;       // "10a" cannot convert to a number, so NaN / 5 = NaN
+  console.log(typeof result2);           // "number" (NaN is still type number)
+  console.log(result2);                  // NaN
+  console.log(result2 + 1);              // NaN 
+ 
+  let mystery3 = "10";
+  let result3 = mystery3 + 5 + 5;        // left to right: "10" + 5 = "105" (string), then "105" + 5 = "1055"
+  let result4 = 5 + 5 + mystery3;        // left to right: 5 + 5 = 10 (number) first, then 10 + "10" = "1010"
+  console.log(result3);                  // "1055"
+  console.log(result4);                  // "1010"
+ 
+  
 }
  
