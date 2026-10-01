@@ -1,6 +1,6 @@
 // CHALLENGE 1 
 
-console.log("CHALLENGE 1");
+
 {
   // string | const: my name will not be reassigned
   const fullName = "Galaletsang Modise";      
@@ -51,7 +51,7 @@ console.log("CHALLENGE 1");
 
 // CHALLENGE 2 
 
-console.log("CHALLENGE 2");
+
 {
   // Re-declared here so this block is self-contained
   const fullName = "Galaletsang Modise";
@@ -109,7 +109,6 @@ console.log("CHALLENGE 2");
  
 // CHALLENGE 3 
 
-console.log(" CHALLENGE 3");
 {
   let a = "123";
   let b = "3.14";
@@ -154,7 +153,7 @@ console.log(" CHALLENGE 3");
 }
  
 // CHALLENGE 4 
-console.log("CHALLENGE 4");
+
 {
   // 1. "5" + 3
   // Prediction: "53", string. + with a string operand means concatenation, so 3 becomes "3".
@@ -205,3 +204,87 @@ console.log("CHALLENGE 4");
   console.log([1] + [2]);
 }
 
+//CHALLENGE 5
+
+ 
+//PART 1: THE BUGGY CODE
+function buggyCode() {
+  // Creates a function-scoped string "Sarah".
+  // ISSUE 1: uses var instead of const/let (function-scoped, hoisted, re-declarable, so accidental bugs).
+  var userName = "Sarah"
+  // Creates the string "25".
+  // ISSUE 2: age is a STRING, not a number. 
+  var userAge = "25"
+  // Creates the number 85.5.
+  var userScore = 85.5
+  // Creates the string "10".
+  // ISSUE 3: adjustment is a STRING, so it will not add numerically.
+  var scoreAdjustment = "10"
+  // number + string means concatenation.
+  // ISSUE 4 (the bug): 85.5 + "10" gives "85.510" (a string), not 95.5.
+  var newScore = userScore + scoreAdjustment
+  // Prints "New score: 85.510", which is wrong.
+  // ISSUE 5: string concatenation with + instead of a template literal.
+  console.log("New score: " + newScore)
+  // ISSUE 6: salary is a string for a number value. Money should be a number.
+  var salary = "50000"
+  // ISSUE 7: TAX_RATE looks like a constant (UPPER_CASE) but var lets it be reassigned.
+  var TAX_RATE = 0.15
+  // "50000" * 0.15 works only by IMPLICIT coercion (7500). 
+  var tax = salary * TAX_RATE
+  // Prints "Tax: R7500". ISSUE 8: no formatting to two decimals for money.
+  console.log("Tax: R" + tax)
+  // 65 - "25" works by implicit coercion (40). 
+  var yearsUntilRetirement = 65 - userAge
+  console.log("Years until retirement: " + yearsUntilRetirement)
+  // ISSUE 9: "25" + 85.5 concatenates to "2585.5" instead of adding to 110.5.
+  var totalAgeAndScore = userAge + userScore
+  console.log(totalAgeAndScore)
+  // ISSUE 10: isAdmin is the STRING "false", not the boolean false.
+  var isAdmin = "false"
+  // Boolean("false") is TRUE (any non-empty string is truthy), so it prints "Admin: true". 
+  console.log("Admin: " + Boolean(isAdmin))
+  // ISSUE 11: inconsistent style, no semicolons, and userName is declared but never used.
+}
+buggyCode();
+ 
+//PART 2: THE CORRECTED VERSION 
+
+{
+  const userName = "Sarah";              // const: never reassigned 
+  const userAge = 25;                    // real number 
+  const userScore = 85.5;
+  const scoreAdjustment = 10;            // real number 
+  const newScore = userScore + scoreAdjustment;   // 95.5, numeric addition
+  console.log(`New score for ${userName}: ${newScore}`);   // template literal 
+ 
+  const salary = 50000;                  // number 
+  const TAX_RATE = 0.15;                 // const so it really is a constant 
+  const tax = salary * TAX_RATE;         // no coercion needed
+  console.log(`Tax: R${tax.toFixed(2)}`);   // 2 decimals 
+ 
+  const yearsUntilRetirement = 65 - userAge;
+  console.log(`Years until retirement: ${yearsUntilRetirement}`);
+ 
+  const totalAgeAndScore = userAge + userScore;   // 110.5 
+  console.log(totalAgeAndScore);
+ 
+  const isAdmin = false;                 // real boolean 
+  console.log(`Admin: ${isAdmin}`);       // no Boolean needed
+}
+ 
+/*
+ PART 3: REVIEW 
+  Here is what I changed:
+  - Replaced every var with const (none of these values change).
+  - Stored numbers as numbers: age, adjustment and salary were strings,
+    which caused "85.510" and "2585.5" instead of real sums.
+  - Made isAdmin a real boolean. Boolean("false") is true, which could
+    accidentally grant admin access.
+  - Used template literals instead of + concatenation, and toFixed(2)
+    for money.
+  - Kept TAX_RATE as const since it is a true constant, and added
+    semicolons and consistent style. The unused userName is now used.
+
+*/
+ 
