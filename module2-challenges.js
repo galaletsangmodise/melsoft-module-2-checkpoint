@@ -437,4 +437,36 @@ originalCode();
  
   
 }
+
+// CHALLENGE 10
+
+/*
+  1. The single most important thing I understood is that JavaScript is
+     dynamically typed and will silently convert types for me (coercion).
+     It rarely throws an error, so I must be deliberate about types
+     myself. Otherwise I get results like "85.510" or NaN without warning.
+ 
+  2. typeof tells me the TYPE of a value, but it cannot tell me if a
+     number is NaN, because typeof NaN is "number". Number.isNaN(x) checks
+     specifically whether the value is NaN. I use typeof to check that
+     something is a string or number before working with it, and
+     Number.isNaN after converting user input to make sure it is valid.
+ 
+  3. A form field like a quantity or price arrives as a string. If I
+     forget to cast and write total = price + quantity, JavaScript
+     concatenates ("199.993") instead of adding. It may not crash and
+     could look fine in testing with small values, so wrong totals could
+     go unnoticed for a long time.
+ 
+  4. IMPLICIT coercion is when JavaScript converts types automatically,
+     for example "5" - 3 gives 2 because "5" is turned into a number.
+     EXPLICIT coercion is when I convert on purpose, for example
+     Number(quantityInput) in my receipt generator. Explicit is safer
+     because the intent is clear to anyone reading the code.
+ 
+  5. I would emphasise the + operator, because it behaves differently
+     from every other arithmetic operator. It concatenates if either
+     side is a string, while - * / always convert to numbers. That
+     double role causes most coercion bugs.
+*/
  
