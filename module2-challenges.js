@@ -317,3 +317,32 @@ buggyCode();
   */
 }
  
+// CHALLENGE 7 
+ 
+
+function originalCode() {
+  var p = "199.99"                  // PROBLEM: var, cryptic name "p", price stored as a string
+  var q = "3"                       // PROBLEM: cryptic name "q", quantity stored as a string
+  var t = 0.15                      // PROBLEM: "t" does not say it is a tax rate var for a constant
+  var sub = p * q                   // PROBLEM: works only via coercion of strings
+  var tax = sub * t                 // The name/types depend on the earlier coercion
+  var tot = sub + tax               // PROBLEM: abbreviated name
+  var r = "Total: " + tot           // PROBLEM: concatenation and no rounding
+  console.log(r)
+}
+originalCode();
+ 
+//REWRITTEN 
+{
+
+  const unitPrice = Number("199.99");
+  const quantity = Number("3");
+  const taxRate = 0.15;
+ 
+  const subtotal = unitPrice * quantity;     // both are real numbers, so no coercion 
+  const taxAmount = subtotal * taxRate;      // name explains what the value is
+  const total = subtotal + taxAmount;        // numeric addition
+ 
+  // Template literal: easier to read and toFixed(2) makes it proper money format
+  console.log(`Total: R${total.toFixed(2)}`);
+}
