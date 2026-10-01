@@ -346,3 +346,58 @@ originalCode();
   // Template literal: easier to read and toFixed(2) makes it proper money format
   console.log(`Total: R${total.toFixed(2)}`);
 }
+
+// CHALLENGE 8 
+
+{
+  /*
+    VARIABLES AND TYPES
+    productName   : string  - name of the product
+    unitPrice     : number  - price of one item in Rand
+    quantityInput : string  - raw value from a form (always text)
+    taxRate       : number  - VAT rate (0.15 = 15%)
+    quantity      : number  - quantityInput converted safely
+    subtotal      : number  - unitPrice * quantity
+    tax           : number  - subtotal * taxRate
+    total         : number  - subtotal + tax
+    receipt       : string  - the formatted output
+  */
+  const productName = "Wireless Mouse";
+  const unitPrice = 249.5;
+  const quantityInput = "3";      // deliberately a string
+  const taxRate = 0.15;
+ 
+  const quantity = Number(quantityInput);   // explicit cast, now a real number
+ 
+  const subtotal = unitPrice * quantity;    // number * number
+  const tax = subtotal * taxRate;
+  const total = subtotal + tax;
+ 
+  const receipt =
+    `===== RECEIPT =====\n` +
+    `Product:  ${productName}\n` +
+    `Quantity: ${quantity}\n` +
+    `Unit:     R${unitPrice.toFixed(2)}\n` +
+    `Subtotal: R${subtotal.toFixed(2)}\n` +
+    `VAT 15%:  R${tax.toFixed(2)}\n` +
+    `Total:    R${total.toFixed(2)}\n` +
+    `===================`;
+  console.log(receipt);
+ 
+  // EDGE CASE
+  const badQuantityInput = "abc";
+  const badQuantity = Number(badQuantityInput);
+  console.log(badQuantity);       // NaN
+ 
+  /*
+    What happened: Number("abc") cannot parse the text, so it returns NaN.
+    Any calculation with NaN also becomes NaN, so the receipt would show
+    "R NaN" without any error being thrown. A real application should
+    validate the input BEFORE calculating: check Number.isNaN(quantity),
+    then show the user a clear error message and refuse to continue.
+  */
+  if (Number.isNaN(badQuantity) || !Number.isInteger(badQuantity) || badQuantity <= 0) {
+    console.log("Invalid quantity: please enter a whole number greater than 0.");
+  }
+}
+ 
