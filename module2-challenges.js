@@ -153,5 +153,55 @@ console.log(" CHALLENGE 3");
   */
 }
  
-
+// CHALLENGE 4 
+console.log("CHALLENGE 4");
+{
+  // 1. "5" + 3
+  // Prediction: "53", string. + with a string operand means concatenation, so 3 becomes "3".
+  console.log("5" + 3);
  
+  // 2. "5" - 3
+  // Prediction: 2, number. There is no string version of -, so "5" is coerced to 5.
+  console.log("5" - 3);
+ 
+  // 3. "5" * "2"
+  // Prediction: 10, number. * is numeric only, so both strings become numbers.
+  console.log("5" * "2");
+ 
+  // 4. true + 1
+  // Prediction: 2, number. No strings involved, so true becomes 1.
+  console.log(true + 1);
+ 
+  // 5. true + "1"
+  // Prediction: "true1", string. A string is present, so + concatenates and true becomes "true".
+  console.log(true + "1");
+ 
+  // 6. false + null
+  // Prediction: 0, number. false becomes 0 and null becomes 0, so 0 + 0.
+  console.log(false + null);
+ 
+  // 7. null + undefined
+  // Prediction: NaN, number. null becomes 0 but undefined becomes NaN, and 0 + NaN is NaN.
+  console.log(null + undefined);
+ 
+  // 8. 1 / 0
+  // Prediction: Infinity, number. JS does not throw on division by zero (IEEE 754).
+  console.log(1 / 0);
+ 
+  // 9. 0 / 0
+  // Prediction: NaN, number. The result is mathematically undefined.
+  console.log(0 / 0);
+ 
+  // 10. "abc" - 1
+  // Prediction: NaN, number. "abc" cannot be converted to a number, so NaN - 1 is NaN.
+  console.log("abc" - 1);
+ 
+  // 11. [] + []
+  // Prediction: "" (empty string), string. Arrays convert to strings: [] becomes "", and "" + "" is "".
+  console.log([] + []);
+ 
+  // 12. [1] + [2]
+  // Prediction: "12", string. [1] becomes "1" and [2] becomes "2", then they are concatenated.
+  console.log([1] + [2]);
+}
+
