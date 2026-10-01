@@ -107,4 +107,51 @@ console.log("CHALLENGE 2");
   */
 }
  
+// CHALLENGE 3 
+
+console.log(" CHALLENGE 3");
+{
+  let a = "123";
+  let b = "3.14";
+  let c = "hello";
+  let d = "42abc";
+  let e = "";
+  let f = 0;
+  let g = null;
+  let h = undefined;
+ 
+  // Small helper so every log prints BOTH the result and its typeof
+  const show = (label, result) => console.log(`  ${label} -> ${result} (${typeof result})`);
+ 
+  // Runs all five conversions on one value
+  const convertAll = (name, x) => {
+    console.log(`--- ${name} = ${String(x)} ---`);
+    show("Number()    ", Number(x));
+    show("parseInt()  ", parseInt(x));
+    show("parseFloat()", parseFloat(x));
+    show("Boolean()   ", Boolean(x));
+    show("String()    ", String(x));
+  };
+ 
+  
+ 
+  /*
+    ANSWERS:
+ 
+    1. Number('42abc') is strict: the WHOLE string must be a valid number,
+       so it returns NaN. parseInt('42abc') reads from the left and stops
+       at the first invalid character, so it returns 42.
+ 
+    2. I reach for parseFloat when the value can have decimals, like
+       prices ("199.99"), measurements or percentages. parseInt would
+       silently chop off everything after the decimal point.
+ 
+    3. Number('') returns 0, not NaN. It is a common source of bugs
+       because an empty form field looks like a valid number 0, so a
+       blank input can be treated as "the user entered zero" and pass
+       validation unnoticed.
+  */
+}
+ 
+
  
