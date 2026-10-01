@@ -1,6 +1,5 @@
 // CHALLENGE 1 
 
-
 {
   // string | const: my name will not be reassigned
   const fullName = "Galaletsang Modise";      
@@ -81,7 +80,7 @@
   console.log(typeof function () {});     // "function"
  
   /*
-    SURPRISES - what I now understand:
+    What I now understand:
     - typeof null is "object", and typeof NaN is "number". I expected
       "null" and "not a number".
     - typeof [1,2,3] is "object". Arrays are a kind of object, so to test
@@ -311,9 +310,9 @@ buggyCode();
   console.log(areClose);           // true
  
   /*
-    Number.EPSILON is the smallest difference (about 2.22e-16) between 1
+    Number.EPSILON is the smallest difference between 1
     and the next representable number. It acts as a tolerance for
-    floating-point rounding error..
+    floating-point rounding error.
   */
 }
  
